@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "project-meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project-name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "author": {
+          "type": "string",
+          "minLength": 1
+        },
+        "date-started": {
+          "type": "string",
+          "pattern": "^\\d{4}\\-\\d{2}\\-\\d{2}$"
+        },
+        "last-updated": {
+          "type": "string",
+          "pattern": "^\\d{4}\\-\\d{2}\\-\\d{2}$"
+        },
+        "languages": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "Stable",
+            "Unstable",
+            "Experimental",
+            "Canceled",
+            "Deprecated",
+            "Other"
+          ]
+        },
+        "license": {
+          "type": "string",
+          "minLength": 1,
+          "default": "MIT"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+.\\d+.\\d+$"
+        }
+      }
+    },
+    "build": {
+      "type": "object",
+      "properties": {
+        "dev-environments": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "test-environments": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "target-platforms": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "compiler": {
+          "$comment": "Information about this project's compiler.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "compiler-name": {
+              "$comment": "The name of the compiler used for this project.",
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "interpreter": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+
+          }
+        }
+      },
+      "required": ["dev-environments"],
+      "oneOf": [
+        { "required": ["compiler"] },
+        { "required": ["interpreter"] }
+      ]
+    }
+  },
+  "required": ["project-meta"]
+}

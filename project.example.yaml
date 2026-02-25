@@ -1,0 +1,23 @@
+# Project metadata for humans to read
+# Not used by the application at runtime
+
+$schema: "./meta.schema.json"
+
+project-meta:
+  project-name: Project Metadata YAML Schema
+  author: Ethan Kletschke
+  date-started: 2026-02-25
+  last-updated: 2026-02-25
+  languages:
+    - JSON
+    - YAML
+  status: Experimental
+  license: MIT
+  version: 0.1.0
+
+build:
+
+team:
+  author: Ethan Kletschke
+  contributors:
+    - Ethan Kletschke
