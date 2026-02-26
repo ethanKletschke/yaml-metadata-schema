@@ -8,22 +8,22 @@
       "additionalProperties": false,
       "properties": {
         "project-name": {
-          "type": "string",
-          "minLength": 1
-        },
-        "author": {
+          "$comment": "The name of the project.",
           "type": "string",
           "minLength": 1
         },
         "date-started": {
+          "$comment": "The date that the project was started.",
           "type": "string",
           "pattern": "^\\d{4}\\-\\d{2}\\-\\d{2}$"
         },
         "last-updated": {
+          "$comment": "The date that the project was last updated.",
           "type": "string",
           "pattern": "^\\d{4}\\-\\d{2}\\-\\d{2}$"
         },
         "languages": {
+          "$comment": "The language(s) used to write the app/project.",
           "type": "array",
           "items": {
             "type": "string"
@@ -31,6 +31,7 @@
           "minItems": 1
         },
         "status": {
+          "$comment": "The current usability status of the app.",
           "type": "string",
           "enum": [
             "Stable",
@@ -42,11 +43,13 @@
           ]
         },
         "license": {
+          "$comment": "The open-source license of the app/project.",
           "type": "string",
           "minLength": 1,
           "default": "MIT"
         },
         "version": {
+          "$comment": "The SemVer version of the app/project.",
           "type": "string",
           "pattern": "^\\d+.\\d+.\\d+$"
         }
@@ -60,6 +63,7 @@
       ]
     },
     "build": {
+      "$comment": "Information about building, compiling, or interpreting the app.",
       "type": "object",
       "additionalProperties": false,
       "minProperties": 1,
@@ -206,6 +210,9 @@
                 "type": ["string", "null"],
                 "minLength": 1
               },
+              "role": {
+                "$comment": "The role that the contributor plays in the project."
+              },
               "github-username": {
                 "$comment": "The contributor's GitHub username",
                 "type": "string",
@@ -219,6 +226,7 @@
             },
             "required": [
               "name",
+              "role",
               "github-username"
             ]
           }
@@ -229,6 +237,12 @@
         "owner",
         "contributors"
       ]
+    },
+    "misc-metadata": {
+      "$comment": "Misc. user-defined keys and values provided for when additional meta is needed.",
+      "type": "object",
+      "additionalProperties": true,
+      "minProperties": 1
     }
   },
   "required": [
