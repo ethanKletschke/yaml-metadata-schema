@@ -1,8 +1,6 @@
 # Project metadata for humans to read
 # Not used by the application at runtime
 
-$schema: "./meta.schema.json"
-
 project-meta:
   project-name: Project Metadata YAML Schema
   author: Ethan Kletschke

@@ -25,7 +25,9 @@
         },
         "languages": {
           "type": "array",
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "minItems": 1
         },
         "status": {
@@ -48,24 +50,42 @@
           "type": "string",
           "pattern": "^\\d+.\\d+.\\d+$"
         }
-      }
+      },
+      "required": [
+        "project-name",
+        "author",
+        "languages",
+        "status",
+        "version"
+      ]
     },
     "build": {
       "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
       "properties": {
         "dev-environments": {
+          "$comment": "The environments where the app/project was developed.",
           "type": "array",
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "minItems": 1
         },
         "test-environments": {
+          "$comment": "The environments where the app/project was tested.",
           "type": "array",
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "minItems": 1
         },
         "target-platforms": {
+          "$comment": "The platforms for which the app/project is developed.",
           "type": "array",
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "minItems": 1
         },
         "compiler": {
@@ -77,23 +97,143 @@
               "$comment": "The name of the compiler used for this project.",
               "type": "string",
               "minLength": 1
+            },
+            "compiler-version": {
+              "$comment": "The compiler version used in this project.",
+              "type": "string",
+              "minLength": 1
+            },
+            "static-compiler": {
+              "$comment": "Does the compiled unit require a runtim to run?",
+              "type": "boolean"
+            },
+            "compilation-process": {
+              "$comment": "Details concerning the compilation of the app.",
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "timing": {
+                  "$comment": "When the source is compiled during the compilation process.",
+                  "type": "string",
+                  "enum": [
+                    "AOT",
+                    "JIT",
+                    "Hybrid"
+                  ]
+                },
+                "output": {
+                  "$comment": "The output that the compiler generates",
+                  "type": "string",
+                  "enum": [
+                    "Native Executable",
+                    "Bytecode",
+                    "Transpiled Source"
+                  ]
+                }
+              },
+              "required": [
+                "timing",
+                "output"
+              ]
             }
-          }
+          },
+          "required": [
+            "compiler-name",
+            "compiler-version"
+          ]
         },
         "interpreter": {
+          "$comment": "Information about this project's interpeter.",
           "type": "object",
           "additionalProperties": false,
           "properties": {
-
+            "interpreter-name": {
+              "$comment": "The name of the interpreter used for this project.",
+              "type": "string",
+              "minLength": 1
+            },
+            "interpreter-version": {
+              "$comment": "The version of the interpreter in a Semantic Versioning format.",
+              "type": "string",
+              "pattern": "^\\d+.\\d+.\\d+.$"
+            }
           }
         }
       },
-      "required": ["dev-environments"],
+      "required": [
+        "dev-environments",
+        "target-platforms"
+      ],
       "oneOf": [
-        { "required": ["compiler"] },
-        { "required": ["interpreter"] }
+        {
+          "required": [
+            "compiler"
+          ]
+        },
+        {
+          "required": [
+            "interpreter"
+          ]
+        }
+      ]
+    },
+    "team": {
+      "$comment": "The team behind the project",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "author": {
+          "$comment": "The original author/owner of the project.",
+          "type": "string",
+          "minLength": 1
+        },
+        "owner": {
+          "$comment": "The current owner of the project.",
+          "type": "string",
+          "minLength": 1
+        },
+        "contributors": {
+          "$comment": "A list of contributors for the project.",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "$comment": "The full name of the contributor.",
+                "type": ["string", "null"],
+                "minLength": 1
+              },
+              "github-username": {
+                "$comment": "The contributor's GitHub username",
+                "type": "string",
+                "minLength": 1
+              },
+              "website": {
+                "$comment": "The contributor's website. This key is optional.",
+                "type": "string",
+                "pattern": "^https?:\\/\\/([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}(\\/.*)?$"
+              }
+            },
+            "required": [
+              "name",
+              "github-username"
+            ]
+          }
+        }
+      },
+      "required": [
+        "author",
+        "owner",
+        "contributors"
       ]
     }
   },
-  "required": ["project-meta"]
+  "required": [
+    "project-meta",
+    "build",
+    "team"
+  ]
 }
