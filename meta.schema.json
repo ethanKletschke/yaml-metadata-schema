@@ -233,9 +233,15 @@
         }
       },
       "required": [
-        "author",
-        "owner",
         "contributors"
+      ],
+      "anyOf": [
+        {
+          "required": ["owner"]
+        },
+        {
+          "required": ["author"]
+        }
       ]
     },
     "misc-metadata": {
