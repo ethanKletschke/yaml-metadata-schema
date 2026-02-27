@@ -159,7 +159,7 @@
             "interpreter-version": {
               "$comment": "The version of the interpreter in a Semantic Versioning format.",
               "type": "string",
-              "pattern": "^\\d+.\\d+.\\d+.$"
+              "pattern": "^\\d+.\\d+.\\d+$"
             }
           }
         }
