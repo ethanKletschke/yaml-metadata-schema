@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/ethanKletschke/yaml-metadata-schema/07817bb/meta.schema.json",
+  "$id": "https://raw.githubusercontent.com/ethanKletschke/yaml-metadata-schema/52cf2b7/meta.schema.json",
   "type": "object",
   "additionalProperties": false,
   "properties": {
@@ -58,6 +58,8 @@
       "required": [
         "project-name",
         "languages",
+        "date-started",
+        "last-updated",
         "status",
         "version"
       ]
@@ -108,7 +110,7 @@
               "minLength": 1
             },
             "static-compiler": {
-              "$comment": "Does the compiled unit require a runtim to run?",
+              "$comment": "Does the compiled unit require a runtime to run?",
               "type": "boolean"
             },
             "compilation-process": {
@@ -166,6 +168,7 @@
       },
       "required": [
         "dev-environments",
+        "test-environments",
         "target-platforms"
       ],
       "oneOf": [
@@ -207,11 +210,14 @@
             "properties": {
               "name": {
                 "$comment": "The full name of the contributor.",
-                "type": ["string", "null"],
-                "minLength": 1
+                "type": "string",
+                "minLength": 1,
+                "default": "Unspecified"
               },
               "role": {
-                "$comment": "The role that the contributor plays in the project."
+                "$comment": "The role that the contributor plays in the project.",
+                "type": "string",
+                "minLength": 1
               },
               "github-username": {
                 "$comment": "The contributor's GitHub username",
@@ -225,9 +231,8 @@
               }
             },
             "required": [
-              "name",
-              "role",
-              "github-username"
+              "github-username",
+              "role"
             ]
           }
         }
