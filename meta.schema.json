@@ -49,7 +49,8 @@
             "Canceled",
             "Deprecated",
             "Other"
-          ]
+          ],
+          "default": "Experimental"
         },
         "license": {
           "$comment": "The open-source license of the app/project.",
