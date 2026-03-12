@@ -31,6 +31,14 @@
           },
           "minItems": 1
         },
+        "frameworks": {
+          "$comment": "The framework(s) used in the project.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "min-items": 1
+        },
         "status": {
           "$comment": "The current usability status of the app.",
           "type": "string",
