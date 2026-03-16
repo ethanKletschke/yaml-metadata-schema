@@ -173,6 +173,11 @@
               "pattern": "^\\d+.\\d+.\\d+$"
             }
           }
+        },
+        "no-build": {
+          "$comment": "Specifies that ",
+          "type": "boolean",
+          "default": "false"
         }
       },
       "required": [
@@ -190,6 +195,9 @@
           "required": [
             "interpreter"
           ]
+        },
+        {
+          "required": ["no-build"]
         }
       ]
     },
