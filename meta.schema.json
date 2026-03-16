@@ -181,9 +181,7 @@
         }
       },
       "required": [
-        "dev-environments",
-        "test-environments",
-        "target-platforms"
+        "dev-environments"
       ],
       "oneOf": [
         {
