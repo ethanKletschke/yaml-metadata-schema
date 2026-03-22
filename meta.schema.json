@@ -39,6 +39,11 @@
           },
           "min-items": 1
         },
+        "package-manager": {
+          "$comment": "What package manager (if any) was used?",
+          "type": "string",
+          "minLength": 1
+        },
         "status": {
           "$comment": "The current usability status of the app.",
           "type": "string",
